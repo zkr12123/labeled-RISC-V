@@ -9,6 +9,8 @@ import boom.common.{DefaultBoomConfig, WithMediumBooms, WithRVC, WithSmallBooms}
 import boom.system.WithNBoomCores
 import boom.lsu.pref.WithPrefetcher
 
+import custom_rocc._
+
 case object UseEmu extends Field[Boolean](false)
 case object NohypeDefault extends Field[Boolean](true)
 
@@ -126,7 +128,9 @@ class LvNAConfigemu extends Config(
   ++ new WithNoMMIOPort
   ++ new WithJtagDTM
   ++ new WithDebugSBA
-  ++ new BaseConfig)
+  ++ new BaseConfig
+  // ++ new WithRoccExample // Add Example RoCC modules: Accumulator Translator CharacterCounter
+  ++ new WithRoCCCacheTestPiped) 
 
 class LvNAFPGAConfigzedboard extends Config(
   new WithoutFPU
